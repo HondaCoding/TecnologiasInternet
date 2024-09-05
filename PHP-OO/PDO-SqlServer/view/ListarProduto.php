@@ -43,7 +43,7 @@ class ListarProduto{
         </form>
     <?php
     }
-    public function ListarTodos($users){
+    public function ListarTodos($produtos){
     ?>
         <a href="index.php?pagina=Produto&opcao=inserir"><img src="./view/registro.png" width="30px">Cadastrar novo produto</a><br>
         <table>
@@ -61,23 +61,24 @@ class ListarProduto{
         </thead>
         <tbody>
         <?php
-        foreach ($users as $user): ?>
+        foreach ($produtos as $produto): ?>
         <tr>
-            <td><?php echo $user['Produto'] ?></td>
-            <td><?php echo $user['IDCategoria'] ?></td>
-            <td><?php echo $user['Segmento'] ?></td>
-            <td><?php echo $user['IDSegmento'] ?></td>
-            <td><?php echo $user['ImagemProduto'] ?></td>
-            <td><?php echo $user['Marca'] ?></td>
-            <td><?php echo $user['Preco'] ?></td>
+            <td><?php echo $produto['IDProduto'] ?></td>
+            <td><?php echo $produto['Produto'] ?></td>
+            <td><?php echo $produto['IDCategoria'] ?></td>
+            <td><?php echo $produto['Segmento'] ?></td>
+            <td><?php echo $produto['IDSegmento'] ?></td>
+            <td><?php echo $produto['ImagemProduto'] ?></td>
+            <td><?php echo $produto['Marca'] ?></td>
+            <td><?php echo $produto['Preco'] ?></td>
             <td>
-                <a href="index.php?pagina=Produto&opcao=editar&Produto=<?=$user['Produto'];?>">
+                <a href="index.php?pagina=Produto&opcao=editar&IDProduto=<?=$produto['IDProduto'];?>">
                     <img src="./view/botao-editar.png" width="30px">
                 </a>
-                <a href="index.php?pagina=Produto&opcao=listOne&Produto=<?=$user['Produto'];?>">
+                <a href="index.php?pagina=Produto&opcao=listOne&IDProduto=<?=$produto['IDProduto'];?>">
                     <img src="./view/listarUm.png" width="30px">
                 </a>
-                <a href="index.php?pagina=Produto&opcao=excluir&Produto=<?=$user['Produto'];?>">
+                <a href="index.php?pagina=Produto&opcao=excluir&IDProduto=<?=$produto['IDProduto'];?>">
                     <img src="./view/excluir.png" width="30px">
                 </a>
             </td>
@@ -88,9 +89,19 @@ class ListarProduto{
     <?php
     }
 
-    public function ListarUm($user){
-        echo "<pre>";
-            print_r($user);
-        echo "</pre>";
+    public function ListarUm($produto){
+        // echo "<pre>";
+        //     print_r($produto["Produto"]);
+        // echo "</pre>";
+        
+        ?>
+        <link href="view/style.css" rel="stylesheet"> 
+        <?php
+        echo $produto[0]["Produto"];
+
+        foreach ($produto as $produt): ?>
+            <p><?=$produt['Produto'];?></p>
+            <img src="<?=$produt['ImagemProduto'];?>" >
+        <?php endforeach;
     }
 }
